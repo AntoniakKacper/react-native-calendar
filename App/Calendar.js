@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Agenda } from "react-native-calendars";
 import { Button, Card } from "react-native-paper";
+import CalendarItem from "./components/CalendarItem";
+import CustomModal from "./components/CustomModal";
+import AddActivityDialog from "./components/AddActivityDialog";
 // import CustomModal from "./CustomModal";
 // import AddActivityDialog from "./AddActivityDialog";
 // import CalendarItem from "./CalendarItem";
@@ -21,37 +24,21 @@ const Calendar = () => {
 
   const renderItem = (item) => {
     return (
-      <TouchableOpacity>
-        <Card style={{marginRight: 10, marginTop: 17}}>
-          <Card.Content style={{alignItems: 'center'}}>
-            <Text>
-              {item.name}
-            </Text>
-          </Card.Content>
-        </Card>
-      </TouchableOpacity>
+      <CalendarItem item={item} />
     )
   }
 
   const renderEmptyDate = () => {
     return (
-      <TouchableOpacity>
-        <Card style={{marginRight: 10, marginTop: 17}}>
-          <Card.Content style={{alignItems: 'center'}}>
-            <Text>
-              Empty day
-            </Text>
-          </Card.Content>
-        </Card>
-      </TouchableOpacity>
+      <CalendarItem />
     )
   }
 
   return (
     <View style={{flex: 1}}>
-      {/*<CustomModal modalVisible={modalVisible} setModalVisible={setModalVisible}>*/}
-      {/*  <AddActivityDialog setVisibleModal={setModalVisible} setItems={setItems} items={items} setModalVisible={setModalVisible} />*/}
-      {/*</CustomModal>*/}
+      <CustomModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
+        <AddActivityDialog setVisibleModal={setModalVisible} setItems={setItems} items={items} setModalVisible={setModalVisible} />
+      </CustomModal>
       <Agenda
         items={items}
         //loadItemsForMonth={loadItems}
