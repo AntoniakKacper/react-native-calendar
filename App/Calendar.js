@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Agenda } from "react-native-calendars";
 import { Button, Card } from "react-native-paper";
 import CalendarItem from "./components/CalendarItem";
 import CustomModal from "./components/CustomModal";
 import AddActivityDialog from "./components/AddActivityDialog";
-// import CustomModal from "./CustomModal";
-// import AddActivityDialog from "./AddActivityDialog";
-// import CalendarItem from "./CalendarItem";
 
 const Calendar = () => {
   const [items, setItems] = useState({
@@ -30,7 +27,13 @@ const Calendar = () => {
 
   const renderEmptyDate = () => {
     return (
-      <CalendarItem />
+        <Card style={{marginRight: 10, marginTop: 17}}>
+          <Card.Content style={{alignItems: 'center'}}>
+            <Text>
+              Empty date
+            </Text>
+          </Card.Content>
+        </Card>
     )
   }
 

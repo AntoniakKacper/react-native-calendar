@@ -4,13 +4,9 @@ import { Button } from 'react-native-paper';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 
-const AddActivityDialog = ({setVisibleModal, items, setItems, setModalVisible}) => {
+const AddActivityDialog = ({items, setItems, setModalVisible}) => {
   const [text, onChangeText] = useState("Name of new activity");
   const [date, setDate] = useState(new Date());
-
-  const handleClose = () => {
-    setVisibleModal(false)
-  }
 
   const handleSubmit = () => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
@@ -39,11 +35,7 @@ const AddActivityDialog = ({setVisibleModal, items, setItems, setModalVisible}) 
       >
         <Text>Submit</Text>
       </Button>
-      <Button
-        onPress={handleClose}
-      >
-        <Text>Close</Text>
-      </Button>
+
     </>
   );
 };

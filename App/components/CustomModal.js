@@ -19,6 +19,11 @@ const CustomModal = ({modalVisible, setModalVisible, children}) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           {children}
+          <Button
+            onPress={handleClose}
+          >
+            <Text>Close</Text>
+          </Button>
         </View>
       </View>
     </Modal>
