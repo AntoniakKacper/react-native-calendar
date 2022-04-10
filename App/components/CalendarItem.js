@@ -4,11 +4,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CustomModal from "./CustomModal";
 import AddNotificationDialog from "./AddNotificationDialog";
 
-const CalendarItem = ({item}) => {
+const CalendarItem = ({item, items}) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   }
+
 
   return (
     <TouchableOpacity onPress={handleOpen}>

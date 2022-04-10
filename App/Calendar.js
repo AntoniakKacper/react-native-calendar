@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { Agenda } from "react-native-calendars";
 import { Button, Card } from "react-native-paper";
 import CalendarItem from "./components/CalendarItem";
 import CustomModal from "./components/CustomModal";
 import AddActivityDialog from "./components/AddActivityDialog";
+import { db } from "./firebaseConfig";
+import { doc, setDoc, addDoc, collection, getDocs } from 'firebase/firestore';
 
 const Calendar = () => {
   const [items, setItems] = useState({
@@ -13,7 +15,38 @@ const Calendar = () => {
     '2022-04-09': [],
     '2022-04-10': [{name: 'item 3 - any js object'}, {name: 'any js object'}]
   });
+
   const [modalVisible, setModalVisible] = useState(false);
+
+  const eventsCollectionRef = collection(db, "events");
+  const getData = async () => {
+    fetch('http://10.0.2.2:8000/events/addSchedule',{
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        date: 'data XDD'
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => console.error(err));
+
+  }
+  const handleAdd = async () => {
+    // console.log("XD")
+    // try {
+    //   const docRef = await addDoc(collection(db, "events"), items);
+    //
+    //   console.log("Document written with ID: ", docRef.id);
+    // } catch (e) {
+    //   console.error("Error adding document: ", e);
+    // }
+  }
 
   const handleOpen = () => {
     setModalVisible(true);
@@ -21,7 +54,7 @@ const Calendar = () => {
 
   const renderItem = (item) => {
     return (
-      <CalendarItem item={item} />
+      <CalendarItem item={item} items={items}/>
     )
   }
 
@@ -50,6 +83,8 @@ const Calendar = () => {
         renderItem={renderItem}
         renderEmptyDate={renderEmptyDate}
       />
+      <Button onPress={getData}>get data</Button>
+      <Button onPress={handleAdd}>Add cwel</Button>
       <Button onPress={handleOpen}>Add activity</Button>
     </View>
   );
