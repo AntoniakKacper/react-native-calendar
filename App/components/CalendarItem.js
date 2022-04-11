@@ -4,12 +4,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CustomModal from "./CustomModal";
 import AddNotificationDialog from "./AddNotificationDialog";
 
-const CalendarItem = ({item, items}) => {
+const CalendarItem = ({item, setSnackbarVisible}) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   }
-
 
   return (
     <TouchableOpacity onPress={handleOpen}>
@@ -21,7 +20,7 @@ const CalendarItem = ({item, items}) => {
         </Card.Content>
       </Card>
       <CustomModal modalVisible={open} setModalVisible={setOpen}>
-        <AddNotificationDialog item={item} />
+        <AddNotificationDialog item={item} setSnackbarVisible={setSnackbarVisible} setOpen={setOpen}/>
       </CustomModal>
     </TouchableOpacity>
   );
