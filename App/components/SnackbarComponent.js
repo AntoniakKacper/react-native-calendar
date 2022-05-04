@@ -1,8 +1,7 @@
 import React from 'react';
-import { Snackbar } from "react-native-paper";
+import {Snackbar} from 'react-native-paper';
 
 const SnackbarComponent = ({label, setVisible, visible}) => {
-
   const onDismissSnackBar = () => setVisible(false);
   return (
     <Snackbar
@@ -11,13 +10,12 @@ const SnackbarComponent = ({label, setVisible, visible}) => {
       action={{
         label: 'Close',
         onPress: () => {
-          setVisible(false)
+          setVisible(false);
         },
       }}>
       {label}
     </Snackbar>
   );
 };
-
 
 export default SnackbarComponent;
